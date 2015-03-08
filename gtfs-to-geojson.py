@@ -15,6 +15,10 @@ def build_feature(row):
   return feature
 
 if __name__ == "__main__":
+  if len(sys.argv) == 1:
+    print "usage: gtfs-to-geojson <file.txt> <outfile>"
+    sys.exit(1)
+
   gtfs_file = sys.argv[1]
   outfile = None
 
@@ -31,7 +35,7 @@ if __name__ == "__main__":
     print "usage: gtfs-to-geojson <file.txt> <outfile>"
     sys.exit(1)
 
-   # read in the gtfs/csv
+  # read in the gtfs/csv
   with open(gtfs_file, "r") as gtfs:
     for row in csv.DictReader(gtfs):
       geojson_out['features'].append(build_feature(row))
